@@ -1,0 +1,134 @@
+/* Definições de variáveis */
+:root {
+    --text-color: #DBE4EF;
+    --card-front-color: #144480;
+    --card-back-color: #00F4BF;
+}
+
+/* Estilos gerais */
+body {
+    background: url('img/bg-desktop.webp') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Bai Jamjuree', sans-serif; /* Certifique-se de importar essa fonte */
+    margin: 0;
+    padding: 0;
+}
+
+/* Contêiner principal */
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 4rem;
+    gap: 3rem;
+}
+
+/* Estilos do cartão */
+.cartao {
+    margin: 1rem;
+    height: 20rem;
+    flex-grow: 1;
+    flex-basis: calc(33% - 6rem); /* Ajuste da largura do cartão */
+    position: relative;
+    perspective: 1000px; /* Para permitir a rotação 3D */
+}
+
+/* Conteúdo do cartão */
+.cartao__conteudo {
+    background-color: var(--card-front-color);
+    text-align: center;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 300ms ease-in-out;
+    position: relative;
+}
+
+.cartao__conteudo h3 {
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    text-align: left;
+    padding: 0.5rem;
+    position: absolute;
+    margin: 0.6rem;
+    border-radius: 0.6rem;
+    font-size: 1vw;
+    backface-visibility: hidden;
+}
+
+.cartao__conteudo p {
+    margin-top: 4rem; /* Corrigido para garantir o alinhamento */
+    padding: 2rem;
+    font-size: 1.4vw;
+}
+
+.cartao__conteudo__pergunta p {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.cartao__conteudo__resposta p {
+    color: var(--card-back-color);
+    font-weight: 700;
+}
+
+/* Efeito de rotação do cartão */
+.cartao.active .cartao__conteudo {
+    transform: rotateY(180deg);
+}
+
+/* Configuração das faces do cartão */
+.cartao__conteudo__pergunta,
+.cartao__conteudo__resposta {
+    backface-visibility: hidden;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Estilos específicos para a parte de resposta */
+.cartao__conteudo__resposta {
+    transform: rotateY(180deg);
+    background-color: rgba(0, 244, 191, 0.2);
+    border: 4px solid var(--card-back-color);
+}
+
+/* Estilos do rodapé */
+footer {
+    background-color: black;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 2rem;
+}
+
+footer p {
+    text-align: center;
+    font-size: 0.6rem;
+    margin-top: 0.5rem;
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 560px) {
+    
+    body {
+        background: url('img/bg-mobile.webp') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    /* Cartões em layout de coluna em dispositivos pequenos */
+    .cartao {
+        flex: 1 0 calc(100% - 1rem);
+    }
+
+    /* Ajustes no tamanho da fonte do título */
+    .cartao__conteudo h3 {
+        font-size: 3vw;
+    }
+
+    /* Ajustes no tamanho da fonte da descrição */
+    .cartao__conteudo p {
+        font-size: 3.8vw;
+    }
+}
